@@ -1,0 +1,39 @@
+#bird-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 10px;
+}
+.bird img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid #333;
+    border-radius: 8px;
+}
+#mp3-list {
+    margin: 20px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.mp3-btn {
+    padding: 10px 20px;
+    background: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.mp3-btn.playing {
+    background: #f44336;
+}
+@media (max-width: 412px) {
+    #bird-list {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    .bird img {
+        width: 180px;
+        height: 180px;
+    }
+}

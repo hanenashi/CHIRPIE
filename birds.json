@@ -1,0 +1,10 @@
+{
+  "aogera": [
+    { "name": "aogera_ch", "file": "birds/aogera/aogera_ch.mp3" },
+    { "name": "aogera_s", "file": "birds/aogera/aogera_s.mp3" }
+  ],
+  "aoji": [
+    { "name": "aoji_ch", "file": "birds/aoji/aoji_ch.mp3" },
+    { "name": "aoji_s", "file": "birds/aoji/aoji_s.mp3" }
+  ]
+}
