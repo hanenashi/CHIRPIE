@@ -1,9 +1,41 @@
 {
-  "aogera": [
+  "aogera1": [
     { "name": "aogera_ch", "file": "birds/aogera/aogera_ch.mp3" },
     { "name": "aogera_s", "file": "birds/aogera/aogera_s.mp3" }
   ],
-  "aoji": [
+  "aogera2": [
+    { "name": "aogera_ch", "file": "birds/aogera/aogera_ch.mp3" },
+    { "name": "aogera_s", "file": "birds/aogera/aogera_s.mp3" }
+  ],
+  "aogera3": [
+    { "name": "aogera_ch", "file": "birds/aogera/aogera_ch.mp3" },
+    { "name": "aogera_s", "file": "birds/aogera/aogera_s.mp3" }
+  ],
+  "aogera4": [
+    { "name": "aogera_ch", "file": "birds/aogera/aogera_ch.mp3" },
+    { "name": "aogera_s", "file": "birds/aogera/aogera_s.mp3" }
+  ],
+  "aogera5": [
+    { "name": "aogera_ch", "file": "birds/aogera/aogera_ch.mp3" },
+    { "name": "aogera_s", "file": "birds/aogera/aogera_s.mp3" }
+  ],
+  "aoji1": [
+    { "name": "aoji_ch", "file": "birds/aoji/aoji_ch.mp3" },
+    { "name": "aoji_s", "file": "birds/aoji/aoji_s.mp3" }
+  ],
+  "aoji2": [
+    { "name": "aoji_ch", "file": "birds/aoji/aoji_ch.mp3" },
+    { "name": "aoji_s", "file": "birds/aoji/aoji_s.mp3" }
+  ],
+  "aoji3": [
+    { "name": "aoji_ch", "file": "birds/aoji/aoji_ch.mp3" },
+    { "name": "aoji_s", "file": "birds/aoji/aoji_s.mp3" }
+  ],
+  "aoji4": [
+    { "name": "aoji_ch", "file": "birds/aoji/aoji_ch.mp3" },
+    { "name": "aoji_s", "file": "birds/aoji/aoji_s.mp3" }
+  ],
+  "aoji5": [
     { "name": "aoji_ch", "file": "birds/aoji/aoji_ch.mp3" },
     { "name": "aoji_s", "file": "birds/aoji/aoji_s.mp3" }
   ]
