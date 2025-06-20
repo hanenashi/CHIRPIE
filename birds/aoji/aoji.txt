@@ -1,5 +1,5 @@
-id=74747h4hfk
-romanized=aojiucucuc7v
+id=51
+romanized=aoji
 kanji=蒿雀
 scientific=test
 english=Japdhdjd
