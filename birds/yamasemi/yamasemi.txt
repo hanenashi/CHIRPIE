@@ -1,0 +1,6 @@
+id=19
+romanized=yamasemi
+kanji=ヤマセミ
+scientific=Megaceryle lugubris
+english=Crested Kingfisher
+czech=Ledňák chocholatý

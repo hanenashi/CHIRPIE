@@ -1,0 +1,6 @@
+id=35
+romanized=kibashiri
+kanji=キバシリ
+scientific=Certhia familiaris
+english=Eurasian Treecreeper
+czech=Šoupálek obecný

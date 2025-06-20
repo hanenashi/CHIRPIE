@@ -1,0 +1,6 @@
+id=4
+romanized=higara
+kanji=ヒガラ
+scientific=Periparus ater
+english=Coal Tit
+czech=Sýkora uhelní

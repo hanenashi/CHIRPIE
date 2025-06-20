@@ -1,0 +1,6 @@
+id=40
+romanized=hakusekirei
+kanji=ハクセキレイ
+scientific=Motacilla alba
+english=White Wagtail
+czech=Konipas bílý

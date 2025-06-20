@@ -1,0 +1,6 @@
+id=5
+romanized=gojuukara
+kanji=ゴジュウカラ
+scientific=Sitta europaea
+english=Eurasian Nuthatch
+czech=Brhlík obecný

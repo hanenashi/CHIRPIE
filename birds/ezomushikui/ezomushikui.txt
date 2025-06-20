@@ -1,0 +1,6 @@
+id=39
+romanized=ezomushikui
+kanji=エゾムシクイ
+scientific=Phylloscopus tenellipes
+english=Pale-legged Leaf Warbler
+czech=Budníček tenkonohý

@@ -1,0 +1,6 @@
+id=6
+romanized=mozu
+kanji=モズ
+scientific=Lanius bucephalus
+english=Bull-headed Shrike
+czech=Ťuhýk býkohlavý

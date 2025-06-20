@@ -1,0 +1,6 @@
+id=51
+romanized=komukudori
+kanji=コムクドリ
+scientific=Sturnus philippensis
+english=Chestnut-cheeked Starling
+czech=Špaček filipínský

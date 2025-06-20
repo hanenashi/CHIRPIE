@@ -1,0 +1,6 @@
+id=1
+romanized=kibitaki
+kanji=キビタキ
+scientific=Ficedula narcissina
+english=Narcissus Flycatcher
+czech=Lejsek narcisový

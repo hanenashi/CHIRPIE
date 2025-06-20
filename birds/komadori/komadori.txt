@@ -1,0 +1,6 @@
+id=29
+romanized=komadori
+kanji=コマドリ
+scientific=Larvivora akahige
+english=Japanese Robin
+czech=Červenka japonská

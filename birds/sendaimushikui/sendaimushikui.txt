@@ -1,0 +1,6 @@
+id=21
+romanized=sendaimushikui
+kanji=センダイムシクイ
+scientific=Phylloscopus coronatus
+english=Eastern Crowned Warbler
+czech=Budníček východní

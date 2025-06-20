@@ -1,0 +1,6 @@
+id=44
+romanized=uso
+kanji=ウソ
+scientific=Pyrrhula pyrrhula
+english=Eurasian Bullfinch
+czech=Hýl obecný

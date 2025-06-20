@@ -1,0 +1,6 @@
+id=32
+romanized=oshidori
+kanji=オシドリ
+scientific=Aix galericulata
+english=Mandarin Duck
+czech=Kachnička mandarinská

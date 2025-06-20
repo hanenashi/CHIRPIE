@@ -1,0 +1,6 @@
+id=10
+romanized=hiyodori
+kanji=ヒヨドリ
+scientific=Hypsipetes amaurotis
+english=Brown-eared Bulbul
+czech=Bulbul hnědouší

@@ -1,0 +1,6 @@
+id=46
+romanized=segurosekirei
+kanji=セグロセキレイ
+scientific=Motacilla grandis
+english=Japanese Wagtail
+czech=Konipas japonský

@@ -1,0 +1,6 @@
+id=3
+romanized=shijuukara
+kanji=シジュウカラ
+scientific=Parus minor
+english=Japanese Tit
+czech=Sýkora malá

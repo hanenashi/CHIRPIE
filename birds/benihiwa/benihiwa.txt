@@ -1,0 +1,6 @@
+id=43
+romanized=benihiwa
+kanji=ベニヒワ
+scientific=Acanthis flammea
+english=Common Redpoll
+czech=Čížek polární

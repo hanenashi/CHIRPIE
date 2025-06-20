@@ -1,0 +1,6 @@
+id=49
+romanized=hashibosogarasu
+kanji=ハシボソガラス
+scientific=Corvus corone
+english=Carrion Crow
+czech=Vrána černá

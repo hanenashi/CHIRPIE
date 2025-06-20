@@ -1,0 +1,6 @@
+id=1
+romanized=aogera
+kanji=緑啄木鳥
+scientific=Picus awokera
+english=Japanese green woodpecker
+czech=Žluna japonská

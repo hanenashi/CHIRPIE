@@ -1,0 +1,6 @@
+id=31
+romanized=ooyoshikiri
+kanji=オオヨシキリ
+scientific=Locustella lanceolata
+english=Great Reed Warbler
+czech=Rákosník velký

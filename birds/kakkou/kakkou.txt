@@ -1,0 +1,6 @@
+id=42
+romanized=kakkou
+kanji=カッコウ
+scientific=Cuculus canorus
+english=Common Cuckoo
+czech=Kukačka obecná

@@ -262,7 +262,7 @@ function handleTouchDragEnd(e) {
     draggedBird.style.left = '';
     draggedBird.style.top = '';
     draggedBird.style.zIndex = '';
-    draggedBird.style.pointerEvents = '';
+    draggedBird.style.pointerEvents = ''; // Restore pointer events
     draggedBird.classList.remove('dragging');
     if (placeholder) {
         placeholder.parentNode.replaceChild(draggedBird, placeholder);
@@ -290,11 +290,12 @@ function renderBirdList(birdsData) {
     const orderedBirds = birdOrder.length ? birdOrder : Object.keys(birdsData);
     orderedBirds.forEach(bird => {
         if (birdsData[bird]) {
+            const folder = bird.startsWith('aogera') ? 'aogera' : 'aoji';
             const div = document.createElement('div');
             div.className = 'bird';
             div.dataset.birdId = bird;
-            div.innerHTML = `<img src="birds/${bird}/${bird}.jpg" alt="${bird}">`;
-            div.onclick = editMode ? null : () => openBirdOverlay(bird, bird);
+            div.innerHTML = `<img src="birds/${folder}/${folder}.jpg" alt="${bird}">`;
+            div.onclick = editMode ? null : () => openBirdOverlay(bird, folder);
             birdList.appendChild(div);
         }
     });
@@ -525,27 +526,6 @@ settingsBtn.addEventListener('click', () => {
     };
 });
 
-function togglePlay(file, button) {
-    if (currentButton && currentButton !== button) {
-        currentButton.classList.remove('playing');
-        currentButton.innerHTML = '🔈';
-        player.pause();
-    }
-    if (player.paused || player.src !== file) {
-        player.src = file;
-        player.play().then(() => {
-            button.classList.add('playing');
-            animateSpeaker(button);
-            currentButton = button;
-        }).catch(error => console.error('Playback error:', error));
-    } else {
-        player.pause();
-        button.classList.remove('playing');
-        button.innerHTML = '🔈';
-        currentButton = null;
-    }
-}
-
 console.log('Fetching birds.json...');
 fetch(`birds.json?t=${Date.now()}`)
     .then(response => {
@@ -554,6 +534,42 @@ fetch(`birds.json?t=${Date.now()}`)
         return response.json();
     })
     .then(birds => {
+        console.log('Loaded birds:', birds);
+        console.log('Bird keys:', JSON.stringify(Object.keys(birds)));
+        if (!birdOrder.length) {
+            birdOrder = Object.keys(birds);
+            localStorage.setItem('birdOrder', JSON.stringify(birdOrder));
+        }
         renderBirdList(birds);
     })
-    .catch(error => console.error('Failed to fetch birds.json:', error));
+    .catch(error => console.error('Error loading birds:', error));
+
+function togglePlay(file, button) {
+    console.log(`Toggling play for: ${file}`);
+    if (player && player.src.includes(file) && !player.paused) {
+        player.pause();
+        button.classList.remove('playing');
+        button.innerHTML = '🔈';
+        currentButton = null;
+    } else if (player) {
+        player.src = file;
+        player.play().catch(error => console.error('Playback error:', error));
+        if (currentButton) {
+            currentButton.classList.remove('playing');
+            currentButton.innerHTML = '🔈';
+        }
+        button.className = 'speaker-btn playing';
+        animateSpeaker(button);
+        currentButton = button;
+    } else {
+        console.error('Audio player not found');
+    }
+    if (player) {
+        player.onended = () => {
+            console.log(`Playback ended: ${file}`);
+            button.classList.remove('playing');
+            button.innerHTML = '🔈';
+            currentButton = null;
+        };
+    }
+}

@@ -1,0 +1,6 @@
+id=22
+romanized=mukudori
+kanji=ムクドリ
+scientific=Agropsar sturninus
+english=White-cheeked Starling
+czech=Špaček bělolící

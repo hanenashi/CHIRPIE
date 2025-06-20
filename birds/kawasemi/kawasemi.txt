@@ -1,0 +1,6 @@
+id=37
+romanized=kawasemi
+kanji=カワセミ
+scientific=Alcedo atthis
+english=Common Kingfisher
+czech=Ledňáček říční

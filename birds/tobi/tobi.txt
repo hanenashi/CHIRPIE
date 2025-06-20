@@ -1,0 +1,6 @@
+id=26
+romanized=tobi
+kanji=トビ
+scientific=Milvus migrans
+english=Black Kite
+czech=Luňák černý
