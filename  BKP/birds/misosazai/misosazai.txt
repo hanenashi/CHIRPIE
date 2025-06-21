@@ -1,0 +1,6 @@
+id=9
+romanized=misosazai
+kanji=ミソサザイ
+scientific=Troglodytes troglodytes
+english=Eurasian Wren
+czech=Střízlík obecný

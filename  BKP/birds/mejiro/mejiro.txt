@@ -1,0 +1,6 @@
+id=24
+romanized=mejiro
+kanji=メジロ
+scientific=Zosterops japonicus
+english=Japanese White-eye
+czech=Býložrout japonský

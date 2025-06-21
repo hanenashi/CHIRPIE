@@ -1,0 +1,6 @@
+id=18
+romanized=uguisu
+kanji=ウグイス
+scientific=Horornis diphone
+english=Japanese Bush Warbler
+czech=Budníček japonský

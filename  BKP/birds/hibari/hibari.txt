@@ -1,0 +1,6 @@
+id=50
+romanized=hibari
+kanji=ヒバリ
+scientific=Alauda arvensis
+english=Eurasian Skylark
+czech=Skřivan polní

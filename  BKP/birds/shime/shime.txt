@@ -1,0 +1,6 @@
+id=30
+romanized=shime
+kanji=シメ
+scientific=Coccothraustes coccothraustes
+english=Hawfinch
+czech=Hýl obecný

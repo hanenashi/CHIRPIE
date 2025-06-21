@@ -1,0 +1,6 @@
+id=25
+romanized=yabusame
+kanji=ヤブサメ
+scientific=Urosphena squameiceps
+english=Short-tailed Bush Warbler
+czech=Cistovka krátkoocasá

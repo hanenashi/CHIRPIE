@@ -1,0 +1,6 @@
+id=16
+romanized=kikuitadaki
+kanji=キクイタダキ
+scientific=Regulus regulus
+english=Goldcrest
+czech=Králiček obecný

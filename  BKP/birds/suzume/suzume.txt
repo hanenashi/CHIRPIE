@@ -1,0 +1,6 @@
+id=36
+romanized=suzume
+kanji=スズメ
+scientific=Passer montanus
+english=Eurasian Tree Sparrow
+czech=Vrabec polní

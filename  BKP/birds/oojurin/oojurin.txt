@@ -1,0 +1,6 @@
+id=33
+romanized=oojurin
+kanji=オオジュリン
+scientific=Emberiza schoeniclus
+english=Common Reed Bunting
+czech=Strnad rákosní

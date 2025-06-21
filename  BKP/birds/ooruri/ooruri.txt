@@ -1,0 +1,6 @@
+id=28
+romanized=ooruri
+kanji=オオルリ
+scientific=Cyanoptila cyanomelana
+english=Blue-and-white Flycatcher
+czech=Lejsek modrohlavý

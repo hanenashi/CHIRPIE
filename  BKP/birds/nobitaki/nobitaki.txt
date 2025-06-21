@@ -1,0 +1,6 @@
+id=41
+romanized=nobitaki
+kanji=ノビタキ
+scientific=Saxicola torquatus
+english=Siberian Stonechat
+czech=Bramborníček černohrdlý

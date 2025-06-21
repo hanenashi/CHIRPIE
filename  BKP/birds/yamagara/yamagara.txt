@@ -1,0 +1,6 @@
+id=2
+romanized=yamagara
+kanji=ヤマガラ
+scientific=Poecile varius
+english=Varied Tit
+czech=Sýkora japonská

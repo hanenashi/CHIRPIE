@@ -1,0 +1,6 @@
+id=7
+romanized=kogara
+kanji=コガラ
+scientific=Poecile montanus
+english=Willow Tit
+czech=Sýkora horská

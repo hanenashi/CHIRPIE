@@ -1,0 +1,6 @@
+id=11
+romanized=ooakagera
+kanji=オオアカゲラ
+scientific=Dendrocopos leucotos
+english=White-backed Woodpecker
+czech=Strakapoud bělohřbetý

@@ -1,3 +1,5 @@
+// script.js for CHIRPIE
+
 const birdList = document.getElementById('bird-list');
 const mp3List = document.getElementById('mp3-list');
 const birdInfo = document.getElementById('bird-info');
@@ -313,15 +315,9 @@ function openBirdOverlay(bird, folder) {
     currentOverlay = overlay;
     currentFolder = folder;
 
-    fetch(`/api/file/download?path=birds/${folder}/${folder}.txt&t=${Date.now()}`)
-        .then(response => {
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            return response.text();
-        })
-        .then(text => {
-            updateBirdInfo(text);
-        })
-        .catch(error => console.error('Error loading bird info:', error));
+    loadBirdInfo(folder).then(text => {
+        updateBirdInfo(text);
+    }).catch(error => console.error('Error loading bird info:', error));
 
     overlay.appendChild(birdInfo);
     overlay.appendChild(mp3List);
@@ -357,6 +353,24 @@ function openBirdOverlay(bird, folder) {
                 mp3List.appendChild(btn);
             });
         });
+}
+
+// Load bird info from .txt file
+async function loadBirdInfo(birdId) {
+    try {
+        // Determine base path based on environment
+        const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+        const basePath = isLocal ? '' : '/CHIRPIE';
+        const url = `${basePath}/birds/${birdId}/${birdId}.txt`;
+        console.log(`Fetching bird info from: ${url}`); // Debug log
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const text = await response.text();
+        return text;
+    } catch (error) {
+        console.error(`Error loading bird info for ${birdId}: ${error}`);
+        return null;
+    }
 }
 
 // Update bird info display
@@ -427,10 +441,7 @@ editBtn.addEventListener('click', () => {
     editBtn.classList.toggle('active', editMode);
     updateBirdListEditMode();
     if (currentOverlay && currentFolder) {
-        fetch(`/api/file/download?path=birds/${currentFolder}/${currentFolder}.txt&t=${Date.now()}`)
-            .then(response => response.text())
-            .then(updateBirdInfo)
-            .catch(error => console.error('Error refreshing bird info:', error));
+        loadBirdInfo(currentFolder).then(updateBirdInfo).catch(error => console.error('Error refreshing bird info:', error));
     }
 });
 
@@ -531,29 +542,21 @@ function togglePlay(file, button) {
         currentButton.innerHTML = '🔈';
         player.pause();
     }
-    if (player.paused || player.src !== file) {
-        player.src = file;
+    if (player.paused || player.src !== `birds/${currentFolder}/${file}`) {
+        player.src = `birds/${currentFolder}/${file}`;
         player.play().then(() => {
             button.classList.add('playing');
             animateSpeaker(button);
-            currentButton = button;
-        }).catch(error => console.error('Playback error:', error));
+        }).catch(error => console.error('Error playing MP3:', error));
     } else {
         player.pause();
         button.classList.remove('playing');
         button.innerHTML = '🔈';
-        currentButton = null;
     }
+    currentButton = button;
 }
 
-console.log('Fetching birds.json...');
-fetch(`birds.json?t=${Date.now()}`)
-    .then(response => {
-        console.log('Fetch response:', response);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        return response.json();
-    })
-    .then(birds => {
-        renderBirdList(birds);
-    })
-    .catch(error => console.error('Failed to fetch birds.json:', error));
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    renderBirdList();
+});

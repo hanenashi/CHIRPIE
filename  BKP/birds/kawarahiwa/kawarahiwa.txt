@@ -1,0 +1,6 @@
+id=17
+romanized=kawarahiwa
+kanji=カワラヒワ
+scientific=Chloris sinica
+english=Oriental Greenfinch
+czech=Zvonohlík východní

@@ -1,0 +1,6 @@
+id=13
+romanized=enaga
+kanji=エナガ
+scientific=Aegithalos caudatus
+english=Long-tailed Tit
+czech=Mlynařík dlouhoocasý

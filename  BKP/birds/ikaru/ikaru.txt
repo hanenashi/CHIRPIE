@@ -1,0 +1,6 @@
+id=34
+romanized=ikaru
+kanji=イカル
+scientific=Eophona personata
+english=Japanese Grosbeak
+czech=Hýl japonský

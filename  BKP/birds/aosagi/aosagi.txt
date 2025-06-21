@@ -1,0 +1,6 @@
+id=38
+romanized=aosagi
+kanji=アオサギ
+scientific=Ardea cinerea
+english=Grey Heron
+czech=Volavka popelavá

@@ -1,0 +1,6 @@
+id=12
+romanized=kumagera
+kanji=クマゲラ
+scientific=Dryocopus javensis
+english=Black Woodpecker
+czech=Datel černý

@@ -1,0 +1,6 @@
+id=27
+romanized=koruri
+kanji=コルリ
+scientific=Larvivora sibilans
+english=Siberian Blue Robin
+czech=Červenka sibiřská

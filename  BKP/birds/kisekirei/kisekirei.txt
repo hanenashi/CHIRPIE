@@ -1,0 +1,6 @@
+id=45
+romanized=kisekirei
+kanji=キセキレイ
+scientific=Motacilla cinerea
+english=Grey Wagtail
+czech=Konipas horský

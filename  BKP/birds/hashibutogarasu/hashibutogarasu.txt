@@ -1,0 +1,6 @@
+id=15
+romanized=hashibutogarasu
+kanji=ハシブトガラス
+scientific=Corvus macrorhynchos
+english=Large-billed Crow
+czech=Vrána velkozobá

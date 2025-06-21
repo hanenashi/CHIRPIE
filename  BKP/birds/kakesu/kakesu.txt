@@ -1,0 +1,6 @@
+id=47
+romanized=kakesu
+kanji=カケス
+scientific=Garrulus glandarius
+english=Eurasian Jay
+czech=Sojka obecná

@@ -1,0 +1,6 @@
+id=48
+romanized=tsugumi
+kanji=ツグミ
+scientific=Turdus eunomus
+english=Dusky Thrush
+czech=Drozd tmavý
