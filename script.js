@@ -536,14 +536,20 @@ settingsBtn.addEventListener('click', () => {
     };
 });
 
+// Toggle MP3 playback
 function togglePlay(file, button) {
     if (currentButton && currentButton !== button) {
         currentButton.classList.remove('playing');
         currentButton.innerHTML = '🔈';
         player.pause();
     }
-    if (player.paused || player.src !== `birds/${currentFolder}/${file}`) {
-        player.src = `birds/${currentFolder}/${file}`;
+    // Determine base path based on environment
+    const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    const basePath = isLocal ? '' : '/CHIRPIE';
+    const mp3Url = `${basePath}/birds/${currentFolder}/${file}`;
+    console.log(`Playing MP3 from: ${mp3Url}`); // Debug log
+    if (player.paused || player.src !== mp3Url) {
+        player.src = mp3Url;
         player.play().then(() => {
             button.classList.add('playing');
             animateSpeaker(button);
