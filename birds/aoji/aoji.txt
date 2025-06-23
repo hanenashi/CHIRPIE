@@ -1,6 +1,6 @@
-id=jdjdjf
+id=53
 romanized=aoji
 kanji=蒿雀
-scientific=test
-english=Japdhdjd
-czech=iguvuvuvuvuvuv7v
+scientific=Emberiza spodocephala
+english=black-faced bunting
+czech=strnad šedokápý

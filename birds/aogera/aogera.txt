@@ -1,4 +1,4 @@
-id=ao
+id=52
 romanized=aogera
 kanji=緑啄木鳥
 scientific=Picus awokera
