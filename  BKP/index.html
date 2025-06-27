@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bird Calls</title>
+    <title>Chirpie</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <button class="edit-btn">✏️</button>
-        <span class="title">Chirpie</span>
-        <button class="settings-btn">⚙️</button>
+        <span id="server-indicator" class="title"></span>
+        <div>
+            <button class="settings-btn">⚙️</button>
+            <button class="edit-btn">✏️</button>
+        </div>
     </header>
     <div id="bird-list"></div>
     <div id="mp3-list"></div>
-    <audio id="player"></audio>
     <div id="bird-info"></div>
+    <audio id="player"></audio>
     <script src="script.js"></script>
 </body>
 </html>
