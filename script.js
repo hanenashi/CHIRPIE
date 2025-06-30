@@ -413,7 +413,9 @@ function renderBirdList(birdsData) {
             div.className = 'bird';
             div.dataset.birdId = bird;
             div.innerHTML = `<img src="${BASE_URL}/birds/${bird}/${bird}.jpg" alt="${bird}">`;
-            div.onclick = editMode ? null : () => openBirdOverlay(bird, bird);
+            div.onclick = () => {
+    if (!editMode) openBirdOverlay(bird, bird);
+};
             birdList.appendChild(div);
         }
     });
