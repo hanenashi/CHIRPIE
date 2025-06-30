@@ -492,20 +492,35 @@ fetch(txtPath, fetchOptions)
 
     fetchBirdData()
         .then(birds => {
-            if (birds[bird]) {
-                birds[bird].forEach(mp3 => {
-                    console.log(`Adding MP3: ${mp3.name}`);
-                    const btn = document.createElement('button');
-                    btn.className = 'speaker-btn';
-                    btn.innerHTML = '🔈';
-                    btn.title = mp3.name;
-                    btn.onclick = (e) => {
-                        e.stopPropagation();
-                        togglePlay(`${BASE_URL}/${mp3.file}`, btn);
-                    };
-                    mp3List.appendChild(btn);
-                });
-            }
+            
+if (birds[bird] && Array.isArray(birds[bird])) {
+    // legacy array support
+    birds[bird].forEach(mp3 => {
+        const btn = document.createElement('button');
+        btn.className = 'speaker-btn';
+        btn.innerHTML = '🔈';
+        btn.title = mp3.name;
+        btn.onclick = (e) => {
+            e.stopPropagation();
+            togglePlay(`${BASE_URL}/${mp3.file}`, btn);
+        };
+        mp3List.appendChild(btn);
+    });
+} else if (birds[bird] && Array.isArray(birds[bird].mp3)) {
+    // GitHub static format
+    birds[bird].mp3.forEach(mp3 => {
+        const btn = document.createElement('button');
+        btn.className = 'speaker-btn';
+        btn.innerHTML = '🔈';
+        btn.title = mp3.name;
+        btn.onclick = (e) => {
+            e.stopPropagation();
+            togglePlay(`${BASE_URL}/${mp3.file}`, btn);
+        };
+        mp3List.appendChild(btn);
+    });
+}
+
         })
         .catch(error => console.error('Failed to fetch MP3s:', error));
 }
