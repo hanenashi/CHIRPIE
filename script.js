@@ -23,7 +23,11 @@ const minSize = 20;
 const maxSize = 400;
 let pinchZoomEnabled = localStorage.getItem('pinchZoom') === 'false' ? false : true;
 let editMode = localStorage.getItem('editMode') === 'true';
-const BASE_URL = serverType === 'python' ? 'http://localhost:8000' : 'http://localhost:8080';
+const BASE_URL = serverType === 'github'
+    ? '.'
+    : serverType === 'python'
+    ? 'http://localhost:8000'
+    : 'http://localhost:8080';
 
 // Initialize edit button state
 editBtn.innerHTML = editMode ? '📝' : '✏️';
@@ -111,7 +115,12 @@ function updateBirdSizes(size) {
 
 // Update server indicator
 function updateServerIndicator() {
-    serverIndicator.textContent = `Using: ${serverType === 'python' ? 'Python Server' : 'Simple HTTP Server PLUS'}`;
+    serverIndicator.textContent =
+    serverType === 'python'
+        ? 'Using: Python Server'
+        : serverType === 'simple-http'
+        ? 'Using: Simple HTTP Server PLUS'
+        : 'Using: GitHub Pages';
 }
 
 // Parse .txt file content
@@ -337,6 +346,12 @@ function updateBirdOrder() {
 
 // Fetch bird data with retry logic
 async function fetchBirdData(retries = 3, delay = 1000) {
+    if (serverType === 'github') {
+        const response = await fetch(`${BASE_URL}/birds.json`);
+        if (!response.ok) throw new Error('Failed to load birds.json');
+        return await response.json();
+    }
+
     const fetchOptions = authCredentials && serverType === 'simple-http' ? {
         headers: {
             'Authorization': 'Basic ' + btoa(`${authCredentials.username}:${authCredentials.password}`)
@@ -440,8 +455,14 @@ function openBirdOverlay(bird, folder) {
         }
     } : {};
 
-    fetch(`${BASE_URL}/api/file/download?path=birds/${folder}/${folder}.txt&t=${encodeURIComponent(String(Date.now()))}`, fetchOptions)
-        .then(response => {
+    
+const txtPath = serverType === 'github'
+    ? `${BASE_URL}/birds/${folder}/${folder}.txt`
+    : `${BASE_URL}/api/file/download?path=birds/${folder}/${folder}.txt&t=${encodeURIComponent(String(Date.now()))}`;
+
+fetch(txtPath, fetchOptions)
+    .then(response => {
+
             if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             return response.text();
         })
@@ -611,6 +632,7 @@ settingsBtn.addEventListener('click', () => {
                 <legend>Serving files with:</legend>
                 <label><input type="radio" name="server-type" id="server-python" value="python" ${serverType === 'python' ? 'checked' : ''}> Python Server (port 8000)</label>
                 <label><input type="radio" name="server-type" id="server-simple-http" value="simple-http" ${serverType === 'simple-http' ? 'checked' : ''}> Simple HTTP Server PLUS (port 8080)</label>
+                <label><input type="radio" name="server-type" id="server-github" value="github" ${serverType === 'github' ? 'checked' : ''}> GitHub Pages (static only)</label>
             </fieldset>
             ${serverType === 'simple-http' ? `
             <label>Simple HTTP Server Username (optional):</label>
