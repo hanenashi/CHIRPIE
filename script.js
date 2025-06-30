@@ -659,7 +659,12 @@ settingsBtn.addEventListener('click', () => {
         const size = sizeInput ? parseFloat(sizeInput.value) : currentSize;
         const pinch = pinchInput ? pinchInput.checked : pinchZoomEnabled;
         const randomWobble = wobbleInput ? wobbleInput.checked : randomizeWobble;
-        const newServerType = pythonRadio && pythonRadio.checked ? 'python' : 'simple-http';
+        const githubRadio = document.getElementById('server-github');
+        const newServerType = githubRadio && githubRadio.checked
+            ? 'github'
+            : pythonRadio && pythonRadio.checked
+            ? 'python'
+            : 'simple-http';
         let newAuthCredentials = authCredentials;
         if (newServerType === 'simple-http' && usernameInput && passwordInput) {
             const username = usernameInput.value;
