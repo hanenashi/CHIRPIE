@@ -1,4 +1,4 @@
-id=5a
+id=52
 romanized=aoji
 kanji=蒿雀
 scientific=Emberiza spodocephala

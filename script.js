@@ -789,13 +789,18 @@ settingsBtn.addEventListener('click', () => {
     };
 });
 
+
+
+
 function togglePlay(file, button) {
     if (currentButton && currentButton !== button) {
         currentButton.classList.remove('playing');
         currentButton.innerHTML = '🔈';
         player.pause();
+        player.currentTime = 0;
     }
-    if (player.paused || player.src !== file) {
+
+    if (player.src !== file) {
         player.src = file;
         player.play().then(() => {
             button.classList.add('playing');
@@ -803,12 +808,24 @@ function togglePlay(file, button) {
             currentButton = button;
         }).catch(error => console.error('Playback error:', error));
     } else {
-        player.pause();
-        button.classList.remove('playing');
-        button.innerHTML = '🔈';
-        currentButton = null;
+        if (!player.paused) {
+            player.pause();
+            player.currentTime = 0;
+            button.classList.remove('playing');
+            button.innerHTML = '🔈';
+            currentButton = null;
+        } else {
+            // force restart from beginning
+            player.currentTime = 0;
+            player.play().then(() => {
+                button.classList.add('playing');
+                animateSpeaker(button);
+                currentButton = button;
+            }).catch(error => console.error('Playback error:', error));
+        }
     }
 }
+
 
 console.log('Application started: Fetching bird data...');
 fetchBirdData()
