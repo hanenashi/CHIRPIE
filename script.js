@@ -10,6 +10,7 @@ let currentOverlay = null;
 let currentFolder = null;
 let birdOrder = JSON.parse(localStorage.getItem('birdOrder')) || [];
 let draggedBird = null;
+let latestBirdData = null;
 let placeholder = null;
 let randomizeWobble = localStorage.getItem('randomizeWobble') !== 'false';
 let serverType = localStorage.getItem('serverType') || 'simple-http'; // 'python' or 'simple-http'
@@ -198,12 +199,15 @@ function preventContextMenu(e) {
 // Drag-and-drop handlers (mouse)
 function handleDragStart(e) {
     if (!editMode) return;
-    e.dataTransfer.setData('text/plain', e.target.dataset.birdId);
-    e.target.classList.add('dragging');
-    placeholder = document.createElement('div');
-    placeholder.className = 'bird-placeholder';
-    e.target.parentNode.insertBefore(placeholder, e.target.nextSibling);
-    updateBirdSizes(currentSize);
+    const bird = e.target.closest('.bird');
+    if (bird) {
+        e.dataTransfer.setData('text/plain', bird.dataset.birdId);
+        bird.classList.add('dragging');
+        placeholder = document.createElement('div');
+        placeholder.className = 'bird-placeholder';
+        bird.parentNode.insertBefore(placeholder, bird.nextSibling);
+        updateBirdSizes(currentSize);
+    }
 }
 
 function handleDragOver(e) {
@@ -225,14 +229,37 @@ function handleDragEnd(e) {
     if (!editMode) return;
     const dragging = document.querySelector('.dragging');
     if (dragging) {
+        console.log('Dragging finished:', dragging.dataset.birdId);
         dragging.classList.remove('dragging');
         if (placeholder) {
-            placeholder.parentNode.replaceChild(dragging, placeholder);
+            const placeholderIndex = Array.from(birdList.children).indexOf(placeholder);
+            console.log('Placeholder index:', placeholderIndex);
+            const draggingId = dragging.dataset.birdId;
+
+            const fromIndex = birdOrder.indexOf(draggingId);
+            console.log('From index:', fromIndex);
+
+            if (fromIndex !== -1) {
+                birdOrder.splice(fromIndex, 1);
+                birdOrder.splice(placeholderIndex, 0, draggingId);
+                localStorage.setItem('birdOrder', JSON.stringify(birdOrder));
+                console.log('Updated birdOrder:', birdOrder);
+            } else {
+                console.warn('Could not find draggingId in birdOrder:', draggingId);
+            }
+
             placeholder.remove();
             placeholder = null;
         }
+    } else {
+        console.warn('No dragging element found on dragEnd');
     }
-    updateBirdOrder();
+    if (latestBirdData) {
+        console.log('Re-rendering bird list with latest data');
+        renderBirdList(latestBirdData);
+    } else {
+        console.warn('No latest bird data available to render');
+    }
 }
 
 function handleDrop(e) {
@@ -297,6 +324,7 @@ function handleTouchDragEnd(e) {
     }
     draggedBird = null;
     updateBirdOrder();
+    fetchBirdData().then(renderBirdList);
     updateBirdListEditMode();
     updateBirdSizes(currentSize);
 }
@@ -374,6 +402,11 @@ function renderBirdList(birdsData) {
     }
     birdList.innerHTML = '';
     const orderedBirds = birdOrder.length ? birdOrder.filter(bird => birdsData[bird]) : Object.keys(birdsData);
+
+    if (!birdOrder.length || orderedBirds.length !== Object.keys(birdsData).length) {
+        birdOrder = Object.keys(birdsData);
+        localStorage.setItem('birdOrder', JSON.stringify(birdOrder));
+    }
     orderedBirds.forEach(bird => {
         if (birdsData[bird]) {
             const div = document.createElement('div');
@@ -735,5 +768,8 @@ function togglePlay(file, button) {
 
 console.log('Application started: Fetching bird data...');
 fetchBirdData()
-    .then(birds => renderBirdList(birds))
+    .then(birds => {
+        latestBirdData = birds;
+        renderBirdList(birds);
+    })
     .catch(error => console.error('Failed to fetch bird data:', error));
