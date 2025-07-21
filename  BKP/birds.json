@@ -1,0 +1,624 @@
+{
+  "aogera": {
+    "mp3": [
+      {
+        "name": "aogera_ch",
+        "file": "birds/aogera/aogera_ch.mp3"
+      },
+      {
+        "name": "aogera_s",
+        "file": "birds/aogera/aogera_s.mp3"
+      }
+    ],
+    "jpg": "birds/aogera/aogera.jpg",
+    "txt": "birds/aogera/aogera.txt"
+  },
+  "aoji": {
+    "mp3": [
+      {
+        "name": "aoji_ch",
+        "file": "birds/aoji/aoji_ch.mp3"
+      },
+      {
+        "name": "aoji_s",
+        "file": "birds/aoji/aoji_s.mp3"
+      }
+    ],
+    "jpg": "birds/aoji/aoji.jpg",
+    "txt": "birds/aoji/aoji.txt"
+  },
+  "aosagi": {
+    "mp3": [
+      {
+        "name": "aosagi_c",
+        "file": "birds/aosagi/aosagi_c.mp3"
+      }
+    ],
+    "jpg": "birds/aosagi/aosagi.jpg",
+    "txt": "birds/aosagi/aosagi.txt"
+  },
+  "benihiwa": {
+    "mp3": [
+      {
+        "name": "benihiwa_di",
+        "file": "birds/benihiwa/benihiwa_di.mp3"
+      }
+    ],
+    "jpg": "birds/benihiwa/benihiwa.jpg",
+    "txt": "birds/benihiwa/benihiwa.txt"
+  },
+  "enaga": {
+    "mp3": [
+      {
+        "name": "enaga_ch",
+        "file": "birds/enaga/enaga_ch.mp3"
+      }
+    ],
+    "jpg": "birds/enaga/enaga.jpg",
+    "txt": "birds/enaga/enaga.txt"
+  },
+  "ezomushikui": {
+    "mp3": [
+      {
+        "name": "ezomushigui_di",
+        "file": "birds/ezomushikui/ezomushigui_di.mp3"
+      }
+    ],
+    "jpg": "birds/ezomushikui/ezomushikui.jpg",
+    "txt": "birds/ezomushikui/ezomushikui.txt"
+  },
+  "gojuukara": {
+    "mp3": [
+      {
+        "name": "gojuukara_ch",
+        "file": "birds/gojuukara/gojuukara_ch.mp3"
+      },
+      {
+        "name": "gojuukara_s",
+        "file": "birds/gojuukara/gojuukara_s.mp3"
+      }
+    ],
+    "jpg": "birds/gojuukara/gojuukara.jpg",
+    "txt": "birds/gojuukara/gojuukara.txt"
+  },
+  "hakusekirei": {
+    "mp3": [
+      {
+        "name": "hakusekirei_di",
+        "file": "birds/hakusekirei/hakusekirei_di.mp3"
+      }
+    ],
+    "jpg": "birds/hakusekirei/hakusekirei.jpg",
+    "txt": "birds/hakusekirei/hakusekirei.txt"
+  },
+  "hashibosogarasu": {
+    "mp3": [
+      {
+        "name": "hashibosogarasu_ch",
+        "file": "birds/hashibosogarasu/hashibosogarasu_ch.mp3"
+      }
+    ],
+    "jpg": "birds/hashibosogarasu/hashibosogarasu.jpg",
+    "txt": "birds/hashibosogarasu/hashibosogarasu.txt"
+  },
+  "hashibutogarasu": {
+    "mp3": [
+      {
+        "name": "hashibutogarasu_ch",
+        "file": "birds/hashibutogarasu/hashibutogarasu_ch.mp3"
+      }
+    ],
+    "jpg": "birds/hashibutogarasu/hashibutogarasu.jpg",
+    "txt": "birds/hashibutogarasu/hashibutogarasu.txt"
+  },
+  "hibari": {
+    "mp3": [
+      {
+        "name": "hibari_ch",
+        "file": "birds/hibari/hibari_ch.mp3"
+      },
+      {
+        "name": "hibari_s",
+        "file": "birds/hibari/hibari_s.mp3"
+      }
+    ],
+    "jpg": "birds/hibari/hibari.jpg",
+    "txt": "birds/hibari/hibari.txt"
+  },
+  "higara": {
+    "mp3": [
+      {
+        "name": "higara_ch",
+        "file": "birds/higara/higara_ch.mp3"
+      },
+      {
+        "name": "higara_s",
+        "file": "birds/higara/higara_s.mp3"
+      }
+    ],
+    "jpg": "birds/higara/higara.jpg",
+    "txt": "birds/higara/higara.txt"
+  },
+  "hiyodori": {
+    "mp3": [
+      {
+        "name": "hiyodori_ch01",
+        "file": "birds/hiyodori/hiyodori_ch01.mp3"
+      },
+      {
+        "name": "hiyodori_ch02",
+        "file": "birds/hiyodori/hiyodori_ch02.mp3"
+      }
+    ],
+    "jpg": "birds/hiyodori/hiyodori.jpg",
+    "txt": "birds/hiyodori/hiyodori.txt"
+  },
+  "hoojiro": {
+    "mp3": [
+      {
+        "name": "hoojiro_ch",
+        "file": "birds/hoojiro/hoojiro_ch.mp3"
+      },
+      {
+        "name": "hoojiro_s",
+        "file": "birds/hoojiro/hoojiro_s.mp3"
+      }
+    ],
+    "jpg": "birds/hoojiro/hoojiro.jpg",
+    "txt": "birds/hoojiro/hoojiro.txt"
+  },
+  "ikaru": {
+    "mp3": [
+      {
+        "name": "ikaru_s",
+        "file": "birds/ikaru/ikaru_s.mp3"
+      }
+    ],
+    "jpg": "birds/ikaru/ikaru.jpg",
+    "txt": "birds/ikaru/ikaru.txt"
+  },
+  "kakesu": {
+    "mp3": [
+      {
+        "name": "kakesu_ch",
+        "file": "birds/kakesu/kakesu_ch.mp3"
+      }
+    ],
+    "jpg": "birds/kakesu/kakesu.jpg",
+    "txt": "birds/kakesu/kakesu.txt"
+  },
+  "kakkou": {
+    "mp3": [
+      {
+        "name": "kakkou_ch",
+        "file": "birds/kakkou/kakkou_ch.mp3"
+      },
+      {
+        "name": "kakkou_s",
+        "file": "birds/kakkou/kakkou_s.mp3"
+      }
+    ],
+    "jpg": "birds/kakkou/kakkou.jpg",
+    "txt": "birds/kakkou/kakkou.txt"
+  },
+  "kawarahiwa": {
+    "mp3": [
+      {
+        "name": "kawarahiwa_ch",
+        "file": "birds/kawarahiwa/kawarahiwa_ch.mp3"
+      },
+      {
+        "name": "kawarahiwa_s",
+        "file": "birds/kawarahiwa/kawarahiwa_s.mp3"
+      }
+    ],
+    "jpg": "birds/kawarahiwa/kawarahiwa.jpg",
+    "txt": "birds/kawarahiwa/kawarahiwa.txt"
+  },
+  "kawasemi": {
+    "mp3": [
+      {
+        "name": "kawasemi_ch",
+        "file": "birds/kawasemi/kawasemi_ch.mp3"
+      },
+      {
+        "name": "kawasemi_s",
+        "file": "birds/kawasemi/kawasemi_s.mp3"
+      }
+    ],
+    "jpg": "birds/kawasemi/kawasemi.jpg",
+    "txt": "birds/kawasemi/kawasemi.txt"
+  },
+  "kibashiri": {
+    "mp3": [
+      {
+        "name": "kibashiri_ch",
+        "file": "birds/kibashiri/kibashiri_ch.mp3"
+      },
+      {
+        "name": "kibashiri_s",
+        "file": "birds/kibashiri/kibashiri_s.mp3"
+      }
+    ],
+    "jpg": "birds/kibashiri/kibashiri.jpg",
+    "txt": "birds/kibashiri/kibashiri.txt"
+  },
+  "kibitaki": {
+    "mp3": [
+      {
+        "name": "kibitaki_ch",
+        "file": "birds/kibitaki/kibitaki_ch.mp3"
+      },
+      {
+        "name": "kibitaki_s",
+        "file": "birds/kibitaki/kibitaki_s.mp3"
+      }
+    ],
+    "jpg": "birds/kibitaki/kibitaki.jpg",
+    "txt": "birds/kibitaki/kibitaki.txt"
+  },
+  "kikuitadaki": {
+    "mp3": [
+      {
+        "name": "kikuitadaki_s",
+        "file": "birds/kikuitadaki/kikuitadaki_s.mp3"
+      }
+    ],
+    "jpg": "birds/kikuitadaki/kikuitadaki.jpg",
+    "txt": "birds/kikuitadaki/kikuitadaki.txt"
+  },
+  "kisekirei": {
+    "mp3": [
+      {
+        "name": "kisekirei_s",
+        "file": "birds/kisekirei/kisekirei_s.mp3"
+      }
+    ],
+    "jpg": "birds/kisekirei/kisekirei.jpg",
+    "txt": "birds/kisekirei/kisekirei.txt"
+  },
+  "kogara": {
+    "mp3": [
+      {
+        "name": "kogara_ch",
+        "file": "birds/kogara/kogara_ch.mp3"
+      },
+      {
+        "name": "kogara_s",
+        "file": "birds/kogara/kogara_s.mp3"
+      }
+    ],
+    "jpg": "birds/kogara/kogara.jpg",
+    "txt": "birds/kogara/kogara.txt"
+  },
+  "kogera": {
+    "mp3": [
+      {
+        "name": "kogera_ch",
+        "file": "birds/kogera/kogera_ch.mp3"
+      },
+      {
+        "name": "kogera_d",
+        "file": "birds/kogera/kogera_d.mp3"
+      }
+    ],
+    "jpg": "birds/kogera/kogera.jpg",
+    "txt": "birds/kogera/kogera.txt"
+  },
+  "komadori": {
+    "mp3": [
+      {
+        "name": "komadori_s",
+        "file": "birds/komadori/komadori_s.mp3"
+      }
+    ],
+    "jpg": "birds/komadori/komadori.jpg",
+    "txt": "birds/komadori/komadori.txt"
+  },
+  "komukudori": {
+    "mp3": [
+      {
+        "name": "komukudori_di",
+        "file": "birds/komukudori/komukudori_di.mp3"
+      }
+    ],
+    "jpg": "birds/komukudori/komukudori.jpg",
+    "txt": "birds/komukudori/komukudori.txt"
+  },
+  "koruri": {
+    "mp3": [
+      {
+        "name": "koruriS",
+        "file": "birds/koruri/koruriS.mp3"
+      }
+    ],
+    "jpg": "birds/koruri/koruri.jpg",
+    "txt": "birds/koruri/koruri.txt"
+  },
+  "kumagera": {
+    "mp3": [
+      {
+        "name": "kumagera_d",
+        "file": "birds/kumagera/kumagera_d.mp3"
+      },
+      {
+        "name": "kumagera_s",
+        "file": "birds/kumagera/kumagera_s.mp3"
+      }
+    ],
+    "jpg": "birds/kumagera/kumagera.jpg",
+    "txt": "birds/kumagera/kumagera.txt"
+  },
+  "mejiro": {
+    "mp3": [
+      {
+        "name": "mejiro_ch",
+        "file": "birds/mejiro/mejiro_ch.mp3"
+      },
+      {
+        "name": "mejiro_s",
+        "file": "birds/mejiro/mejiro_s.mp3"
+      }
+    ],
+    "jpg": "birds/mejiro/mejiro.jpg",
+    "txt": "birds/mejiro/mejiro.txt"
+  },
+  "misosazai": {
+    "mp3": [
+      {
+        "name": "misosazai_ch",
+        "file": "birds/misosazai/misosazai_ch.mp3"
+      },
+      {
+        "name": "misosazai_s",
+        "file": "birds/misosazai/misosazai_s.mp3"
+      }
+    ],
+    "jpg": "birds/misosazai/misosazai.jpg",
+    "txt": "birds/misosazai/misosazai.txt"
+  },
+  "mozu": {
+    "mp3": [
+      {
+        "name": "mozu_ch",
+        "file": "birds/mozu/mozu_ch.mp3"
+      },
+      {
+        "name": "mozu_s",
+        "file": "birds/mozu/mozu_s.mp3"
+      }
+    ],
+    "jpg": "birds/mozu/mozu.jpg",
+    "txt": "birds/mozu/mozu.txt"
+  },
+  "mukudori": {
+    "mp3": [
+      {
+        "name": "mukudori_ch",
+        "file": "birds/mukudori/mukudori_ch.mp3"
+      }
+    ],
+    "jpg": "birds/mukudori/mukudori.jpg",
+    "txt": "birds/mukudori/mukudori.txt"
+  },
+  "nobitaki": {
+    "mp3": [
+      {
+        "name": "nobitaki_di",
+        "file": "birds/nobitaki/nobitaki_di.mp3"
+      }
+    ],
+    "jpg": "birds/nobitaki/nobitaki.jpg",
+    "txt": "birds/nobitaki/nobitaki.txt"
+  },
+  "ooakagera": {
+    "mp3": [
+      {
+        "name": "ooakagera_ch",
+        "file": "birds/ooakagera/ooakagera_ch.mp3"
+      },
+      {
+        "name": "ooakagera_d",
+        "file": "birds/ooakagera/ooakagera_d.mp3"
+      }
+    ],
+    "jpg": "birds/ooakagera/ooakagera.jpg",
+    "txt": "birds/ooakagera/ooakagera.txt"
+  },
+  "oojurin": {
+    "mp3": [
+      {
+        "name": "di",
+        "file": "birds/oojurin/di.mp3"
+      }
+    ],
+    "jpg": "birds/oojurin/oojurin.jpg",
+    "txt": "birds/oojurin/oojurin.txt"
+  },
+  "ooruri": {
+    "mp3": [
+      {
+        "name": "ooruri_s",
+        "file": "birds/ooruri/ooruri_s.mp3"
+      }
+    ],
+    "jpg": "birds/ooruri/ooruri.jpg",
+    "txt": "birds/ooruri/ooruri.txt"
+  },
+  "ooyoshikiri": {
+    "mp3": [
+      {
+        "name": "ooyoshikiri_s",
+        "file": "birds/ooyoshikiri/ooyoshikiri_s.mp3"
+      }
+    ],
+    "jpg": "birds/ooyoshikiri/ooyoshikiri.jpg",
+    "txt": "birds/ooyoshikiri/ooyoshikiri.txt"
+  },
+  "oshidori": {
+    "mp3": [
+      {
+        "name": "oshidori_ch",
+        "file": "birds/oshidori/oshidori_ch.mp3"
+      },
+      {
+        "name": "oshidori_s",
+        "file": "birds/oshidori/oshidori_s.mp3"
+      }
+    ],
+    "jpg": "birds/oshidori/oshidori.jpg",
+    "txt": "birds/oshidori/oshidori.txt"
+  },
+  "segurosekirei": {
+    "mp3": [
+      {
+        "name": "segurosekirei_ch",
+        "file": "birds/segurosekirei/segurosekirei_ch.mp3"
+      },
+      {
+        "name": "segurosekirei_s",
+        "file": "birds/segurosekirei/segurosekirei_s.mp3"
+      }
+    ],
+    "jpg": "birds/segurosekirei/segurosekirei.jpg",
+    "txt": "birds/segurosekirei/segurosekirei.txt"
+  },
+  "sendaimushikui": {
+    "mp3": [
+      {
+        "name": "sendaimushikui_s",
+        "file": "birds/sendaimushikui/sendaimushikui_s.mp3"
+      }
+    ],
+    "jpg": "birds/sendaimushikui/sendaimushikui.jpg",
+    "txt": "birds/sendaimushikui/sendaimushikui.txt"
+  },
+  "shijuukara": {
+    "mp3": [
+      {
+        "name": "shijuukara_ch",
+        "file": "birds/shijuukara/shijuukara_ch.mp3"
+      },
+      {
+        "name": "shijuukara_s",
+        "file": "birds/shijuukara/shijuukara_s.mp3"
+      }
+    ],
+    "jpg": "birds/shijuukara/shijuukara.jpg",
+    "txt": "birds/shijuukara/shijuukara.txt"
+  },
+  "shime": {
+    "mp3": [
+      {
+        "name": "shime_ch",
+        "file": "birds/shime/shime_ch.mp3"
+      }
+    ],
+    "jpg": "birds/shime/shime.jpg",
+    "txt": "birds/shime/shime.txt"
+  },
+  "suzume": {
+    "mp3": [
+      {
+        "name": "suzume_ch",
+        "file": "birds/suzume/suzume_ch.mp3"
+      },
+      {
+        "name": "suzume_s",
+        "file": "birds/suzume/suzume_s.mp3"
+      }
+    ],
+    "jpg": "birds/suzume/suzume.jpg",
+    "txt": "birds/suzume/suzume.txt"
+  },
+  "tobi": {
+    "mp3": [
+      {
+        "name": "tobi_ch",
+        "file": "birds/tobi/tobi_ch.mp3"
+      }
+    ],
+    "jpg": "birds/tobi/tobi.jpg",
+    "txt": "birds/tobi/tobi.txt"
+  },
+  "tsugumi": {
+    "mp3": [
+      {
+        "name": "tsugumi_ch",
+        "file": "birds/tsugumi/tsugumi_ch.mp3"
+      }
+    ],
+    "jpg": "birds/tsugumi/tsugumi.jpg",
+    "txt": "birds/tsugumi/tsugumi.txt"
+  },
+  "uguisu": {
+    "mp3": [
+      {
+        "name": "uguisu_ch",
+        "file": "birds/uguisu/uguisu_ch.mp3"
+      },
+      {
+        "name": "uguisu_s",
+        "file": "birds/uguisu/uguisu_s.mp3"
+      },
+      {
+        "name": "uguisu_t",
+        "file": "birds/uguisu/uguisu_t.mp3"
+      }
+    ],
+    "jpg": "birds/uguisu/uguisu.jpg",
+    "txt": "birds/uguisu/uguisu.txt"
+  },
+  "uso": {
+    "mp3": [
+      {
+        "name": "uso_ch",
+        "file": "birds/uso/uso_ch.mp3"
+      },
+      {
+        "name": "uso_s",
+        "file": "birds/uso/uso_s.mp3"
+      }
+    ],
+    "jpg": "birds/uso/uso.jpg",
+    "txt": "birds/uso/uso.txt"
+  },
+  "yabusame": {
+    "mp3": [
+      {
+        "name": "s_1",
+        "file": "birds/yabusame/s_1.mp3"
+      },
+      {
+        "name": "s_2",
+        "file": "birds/yabusame/s_2.mp3"
+      }
+    ],
+    "jpg": "birds/yabusame/yabusame.jpg",
+    "txt": "birds/yabusame/yabusame.txt"
+  },
+  "yamagara": {
+    "mp3": [
+      {
+        "name": "yamagara_c",
+        "file": "birds/yamagara/yamagara_c.mp3"
+      },
+      {
+        "name": "yamagara_s",
+        "file": "birds/yamagara/yamagara_s.mp3"
+      }
+    ],
+    "jpg": "birds/yamagara/yamagara.jpg",
+    "txt": "birds/yamagara/yamagara.txt"
+  },
+  "yamasemi": {
+    "mp3": [
+      {
+        "name": "yamasemi_ch",
+        "file": "birds/yamasemi/yamasemi_ch.mp3"
+      }
+    ],
+    "jpg": "birds/yamasemi/yamasemi.jpg",
+    "txt": "birds/yamasemi/yamasemi.txt"
+  }
+}

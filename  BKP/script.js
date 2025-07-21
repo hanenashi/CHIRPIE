@@ -10,6 +10,7 @@ let currentOverlay = null;
 let currentFolder = null;
 let birdOrder = JSON.parse(localStorage.getItem('birdOrder')) || [];
 let draggedBird = null;
+let latestBirdData = null;
 let placeholder = null;
 let randomizeWobble = localStorage.getItem('randomizeWobble') !== 'false';
 let serverType = localStorage.getItem('serverType') || 'simple-http'; // 'python' or 'simple-http'
@@ -22,7 +23,11 @@ const minSize = 20;
 const maxSize = 400;
 let pinchZoomEnabled = localStorage.getItem('pinchZoom') === 'false' ? false : true;
 let editMode = localStorage.getItem('editMode') === 'true';
-const BASE_URL = serverType === 'python' ? 'http://localhost:8000' : 'http://localhost:8080';
+const BASE_URL = serverType === 'github'
+    ? '.'
+    : serverType === 'python'
+    ? 'http://localhost:8000'
+    : 'http://localhost:8080';
 
 // Initialize edit button state
 editBtn.innerHTML = editMode ? '📝' : '✏️';
@@ -110,7 +115,12 @@ function updateBirdSizes(size) {
 
 // Update server indicator
 function updateServerIndicator() {
-    serverIndicator.textContent = `Using: ${serverType === 'python' ? 'Python Server' : 'Simple HTTP Server PLUS'}`;
+    serverIndicator.textContent =
+    serverType === 'python'
+        ? 'Using: Python Server'
+        : serverType === 'simple-http'
+        ? 'Using: Simple HTTP Server PLUS'
+        : 'Using: GitHub Pages';
 }
 
 // Parse .txt file content
@@ -198,12 +208,15 @@ function preventContextMenu(e) {
 // Drag-and-drop handlers (mouse)
 function handleDragStart(e) {
     if (!editMode) return;
-    e.dataTransfer.setData('text/plain', e.target.dataset.birdId);
-    e.target.classList.add('dragging');
-    placeholder = document.createElement('div');
-    placeholder.className = 'bird-placeholder';
-    e.target.parentNode.insertBefore(placeholder, e.target.nextSibling);
-    updateBirdSizes(currentSize);
+    const bird = e.target.closest('.bird');
+    if (bird) {
+        e.dataTransfer.setData('text/plain', bird.dataset.birdId);
+        bird.classList.add('dragging');
+        placeholder = document.createElement('div');
+        placeholder.className = 'bird-placeholder';
+        bird.parentNode.insertBefore(placeholder, bird.nextSibling);
+        updateBirdSizes(currentSize);
+    }
 }
 
 function handleDragOver(e) {
@@ -225,14 +238,37 @@ function handleDragEnd(e) {
     if (!editMode) return;
     const dragging = document.querySelector('.dragging');
     if (dragging) {
+        console.log('Dragging finished:', dragging.dataset.birdId);
         dragging.classList.remove('dragging');
         if (placeholder) {
-            placeholder.parentNode.replaceChild(dragging, placeholder);
+            const placeholderIndex = Array.from(birdList.children).indexOf(placeholder);
+            console.log('Placeholder index:', placeholderIndex);
+            const draggingId = dragging.dataset.birdId;
+
+            const fromIndex = birdOrder.indexOf(draggingId);
+            console.log('From index:', fromIndex);
+
+            if (fromIndex !== -1) {
+                birdOrder.splice(fromIndex, 1);
+                birdOrder.splice(placeholderIndex, 0, draggingId);
+                localStorage.setItem('birdOrder', JSON.stringify(birdOrder));
+                console.log('Updated birdOrder:', birdOrder);
+            } else {
+                console.warn('Could not find draggingId in birdOrder:', draggingId);
+            }
+
             placeholder.remove();
             placeholder = null;
         }
+    } else {
+        console.warn('No dragging element found on dragEnd');
     }
-    updateBirdOrder();
+    if (latestBirdData) {
+        console.log('Re-rendering bird list with latest data');
+        renderBirdList(latestBirdData);
+    } else {
+        console.warn('No latest bird data available to render');
+    }
 }
 
 function handleDrop(e) {
@@ -297,6 +333,7 @@ function handleTouchDragEnd(e) {
     }
     draggedBird = null;
     updateBirdOrder();
+    fetchBirdData().then(renderBirdList);
     updateBirdListEditMode();
     updateBirdSizes(currentSize);
 }
@@ -309,6 +346,12 @@ function updateBirdOrder() {
 
 // Fetch bird data with retry logic
 async function fetchBirdData(retries = 3, delay = 1000) {
+    if (serverType === 'github') {
+        const response = await fetch(`${BASE_URL}/birds.json`);
+        if (!response.ok) throw new Error('Failed to load birds.json');
+        return await response.json();
+    }
+
     const fetchOptions = authCredentials && serverType === 'simple-http' ? {
         headers: {
             'Authorization': 'Basic ' + btoa(`${authCredentials.username}:${authCredentials.password}`)
@@ -374,13 +417,20 @@ function renderBirdList(birdsData) {
     }
     birdList.innerHTML = '';
     const orderedBirds = birdOrder.length ? birdOrder.filter(bird => birdsData[bird]) : Object.keys(birdsData);
+
+    if (!birdOrder.length || orderedBirds.length !== Object.keys(birdsData).length) {
+        birdOrder = Object.keys(birdsData);
+        localStorage.setItem('birdOrder', JSON.stringify(birdOrder));
+    }
     orderedBirds.forEach(bird => {
         if (birdsData[bird]) {
             const div = document.createElement('div');
             div.className = 'bird';
             div.dataset.birdId = bird;
             div.innerHTML = `<img src="${BASE_URL}/birds/${bird}/${bird}.jpg" alt="${bird}">`;
-            div.onclick = editMode ? null : () => openBirdOverlay(bird, bird);
+            div.onclick = () => {
+    if (!editMode) openBirdOverlay(bird, bird);
+};
             birdList.appendChild(div);
         }
     });
@@ -405,8 +455,14 @@ function openBirdOverlay(bird, folder) {
         }
     } : {};
 
-    fetch(`${BASE_URL}/api/file/download?path=birds/${folder}/${folder}.txt&t=${encodeURIComponent(String(Date.now()))}`, fetchOptions)
-        .then(response => {
+    
+const txtPath = serverType === 'github'
+    ? `${BASE_URL}/birds/${folder}/${folder}.txt`
+    : `${BASE_URL}/api/file/download?path=birds/${folder}/${folder}.txt&t=${encodeURIComponent(String(Date.now()))}`;
+
+fetch(txtPath, fetchOptions)
+    .then(response => {
+
             if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             return response.text();
         })
@@ -436,20 +492,35 @@ function openBirdOverlay(bird, folder) {
 
     fetchBirdData()
         .then(birds => {
-            if (birds[bird]) {
-                birds[bird].forEach(mp3 => {
-                    console.log(`Adding MP3: ${mp3.name}`);
-                    const btn = document.createElement('button');
-                    btn.className = 'speaker-btn';
-                    btn.innerHTML = '🔈';
-                    btn.title = mp3.name;
-                    btn.onclick = (e) => {
-                        e.stopPropagation();
-                        togglePlay(`${BASE_URL}/${mp3.file}`, btn);
-                    };
-                    mp3List.appendChild(btn);
-                });
-            }
+            
+if (birds[bird] && Array.isArray(birds[bird])) {
+    // legacy array support
+    birds[bird].forEach(mp3 => {
+        const btn = document.createElement('button');
+        btn.className = 'speaker-btn';
+        btn.innerHTML = '🔈';
+        btn.title = mp3.name;
+        btn.onclick = (e) => {
+            e.stopPropagation();
+            togglePlay(`${BASE_URL}/${mp3.file}`, btn);
+        };
+        mp3List.appendChild(btn);
+    });
+} else if (birds[bird] && Array.isArray(birds[bird].mp3)) {
+    // GitHub static format
+    birds[bird].mp3.forEach(mp3 => {
+        const btn = document.createElement('button');
+        btn.className = 'speaker-btn';
+        btn.innerHTML = '🔈';
+        btn.title = mp3.name;
+        btn.onclick = (e) => {
+            e.stopPropagation();
+            togglePlay(`${BASE_URL}/${mp3.file}`, btn);
+        };
+        mp3List.appendChild(btn);
+    });
+}
+
         })
         .catch(error => console.error('Failed to fetch MP3s:', error));
 }
@@ -576,6 +647,7 @@ settingsBtn.addEventListener('click', () => {
                 <legend>Serving files with:</legend>
                 <label><input type="radio" name="server-type" id="server-python" value="python" ${serverType === 'python' ? 'checked' : ''}> Python Server (port 8000)</label>
                 <label><input type="radio" name="server-type" id="server-simple-http" value="simple-http" ${serverType === 'simple-http' ? 'checked' : ''}> Simple HTTP Server PLUS (port 8080)</label>
+                <label><input type="radio" name="server-type" id="server-github" value="github" ${serverType === 'github' ? 'checked' : ''}> GitHub Pages (static only)</label>
             </fieldset>
             ${serverType === 'simple-http' ? `
             <label>Simple HTTP Server Username (optional):</label>
@@ -602,7 +674,12 @@ settingsBtn.addEventListener('click', () => {
         const size = sizeInput ? parseFloat(sizeInput.value) : currentSize;
         const pinch = pinchInput ? pinchInput.checked : pinchZoomEnabled;
         const randomWobble = wobbleInput ? wobbleInput.checked : randomizeWobble;
-        const newServerType = pythonRadio && pythonRadio.checked ? 'python' : 'simple-http';
+        const githubRadio = document.getElementById('server-github');
+        const newServerType = githubRadio && githubRadio.checked
+            ? 'github'
+            : pythonRadio && pythonRadio.checked
+            ? 'python'
+            : 'simple-http';
         let newAuthCredentials = authCredentials;
         if (newServerType === 'simple-http' && usernameInput && passwordInput) {
             const username = usernameInput.value;
@@ -712,13 +789,18 @@ settingsBtn.addEventListener('click', () => {
     };
 });
 
+
+
+
 function togglePlay(file, button) {
     if (currentButton && currentButton !== button) {
         currentButton.classList.remove('playing');
         currentButton.innerHTML = '🔈';
         player.pause();
+        player.currentTime = 0;
     }
-    if (player.paused || player.src !== file) {
+
+    if (player.src !== file) {
         player.src = file;
         player.play().then(() => {
             button.classList.add('playing');
@@ -726,14 +808,29 @@ function togglePlay(file, button) {
             currentButton = button;
         }).catch(error => console.error('Playback error:', error));
     } else {
-        player.pause();
-        button.classList.remove('playing');
-        button.innerHTML = '🔈';
-        currentButton = null;
+        if (!player.paused) {
+            player.pause();
+            player.currentTime = 0;
+            button.classList.remove('playing');
+            button.innerHTML = '🔈';
+            currentButton = null;
+        } else {
+            // force restart from beginning
+            player.currentTime = 0;
+            player.play().then(() => {
+                button.classList.add('playing');
+                animateSpeaker(button);
+                currentButton = button;
+            }).catch(error => console.error('Playback error:', error));
+        }
     }
 }
 
+
 console.log('Application started: Fetching bird data...');
 fetchBirdData()
-    .then(birds => renderBirdList(birds))
+    .then(birds => {
+        latestBirdData = birds;
+        renderBirdList(birds);
+    })
     .catch(error => console.error('Failed to fetch bird data:', error));

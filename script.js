@@ -455,14 +455,53 @@ function openBirdOverlay(bird, folder) {
         }
     } : {};
 
-    
-const txtPath = serverType === 'github'
-    ? `${BASE_URL}/birds/${folder}/${folder}.txt`
-    : `${BASE_URL}/api/file/download?path=birds/${folder}/${folder}.txt&t=${encodeURIComponent(String(Date.now()))}`;
+    // Function for deterministic colors
+function stringToHue(str) {
+    let hash = 5381; // Start with large prime
+    for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) + hash) + str.charCodeAt(i); // hash * 33 + char
+    }
+    return Math.abs(hash) % 360; // Ensure 0-359
+}
 
-fetch(txtPath, fetchOptions)
-    .then(response => {
+    // Fetch MP3s and create colored buttons
+    fetchBirdData()
+        .then(birds => {
+            let mp3Array = [];
 
+            if (birds[bird] && Array.isArray(birds[bird])) {
+                // Legacy format
+                mp3Array = birds[bird];
+            } else if (birds[bird] && Array.isArray(birds[bird].mp3)) {
+                // GitHub static format
+                mp3Array = birds[bird].mp3;
+            }
+
+            mp3Array.forEach(mp3 => {
+                const btn = document.createElement('button');
+                btn.className = 'speaker-btn';
+                btn.innerHTML = '🔈';
+                btn.title = mp3.name;
+
+                const hue = stringToHue(mp3.name); // Deterministic color
+                btn.style.borderColor = `hsl(${hue}, 70%, 50%)`;
+                btn.style.color = `hsl(${hue}, 70%, 50%)`;
+
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    togglePlay(`${BASE_URL}/${mp3.file}`, btn);
+                };
+                mp3List.appendChild(btn);
+            });
+        })
+        .catch(error => console.error('Failed to fetch MP3s:', error));
+
+    const txtPath = serverType === 'github'
+        ? `${BASE_URL}/birds/${folder}/${folder}.txt`
+        : `${BASE_URL}/api/file/download?path=birds/${folder}/${folder}.txt&t=${encodeURIComponent(String(Date.now()))}`;
+
+    fetch(txtPath, fetchOptions)
+        .then(response => {
             if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             return response.text();
         })
@@ -489,41 +528,9 @@ fetch(txtPath, fetchOptions)
     };
     document.body.appendChild(overlay);
     overlay.classList.add('active');
-
-    fetchBirdData()
-        .then(birds => {
-            
-if (birds[bird] && Array.isArray(birds[bird])) {
-    // legacy array support
-    birds[bird].forEach(mp3 => {
-        const btn = document.createElement('button');
-        btn.className = 'speaker-btn';
-        btn.innerHTML = '🔈';
-        btn.title = mp3.name;
-        btn.onclick = (e) => {
-            e.stopPropagation();
-            togglePlay(`${BASE_URL}/${mp3.file}`, btn);
-        };
-        mp3List.appendChild(btn);
-    });
-} else if (birds[bird] && Array.isArray(birds[bird].mp3)) {
-    // GitHub static format
-    birds[bird].mp3.forEach(mp3 => {
-        const btn = document.createElement('button');
-        btn.className = 'speaker-btn';
-        btn.innerHTML = '🔈';
-        btn.title = mp3.name;
-        btn.onclick = (e) => {
-            e.stopPropagation();
-            togglePlay(`${BASE_URL}/${mp3.file}`, btn);
-        };
-        mp3List.appendChild(btn);
-    });
 }
 
-        })
-        .catch(error => console.error('Failed to fetch MP3s:', error));
-}
+
 
 // Update bird info display
 function updateBirdInfo(text) {
@@ -545,6 +552,7 @@ function updateBirdInfo(text) {
         const saveBtn = document.createElement('button');
         saveBtn.className = 'save-bird-btn';
         saveBtn.textContent = 'SAVE';
+
         saveBtn.onclick = (e) => {
             e.stopPropagation();
             const data = {};
@@ -552,12 +560,15 @@ function updateBirdInfo(text) {
                 data[field] = birdInfo.querySelector(`input[data-field="${field}"]`).value;
             });
             const textContent = fields.map(field => `${field}=${data[field]}`).join('\n');
+
             const fetchOptions = authCredentials && serverType === 'simple-http' ? {
                 headers: {
                     'Authorization': 'Basic ' + btoa(`${authCredentials.username}:${authCredentials.password}`)
                 }
             } : {};
+
             if (serverType === 'python') {
+                // Python server save
                 fetch(`${BASE_URL}/save`, {
                     method: 'POST',
                     headers: {
@@ -568,43 +579,43 @@ function updateBirdInfo(text) {
                         data: data
                     })
                 })
-                    .then(response => {
-                        if (!response.ok) {
-                            console.error('Save response:', response.status, response.statusText);
-                            throw new Error(`HTTP ${response.status}`);
-                        }
-                        return response.json();
-                    })
-                    .then(result => {
-                        console.log('Saved bird info:', result);
-                        fetch(`${BASE_URL}/api/file/download?path=birds/${currentFolder}/${currentFolder}.txt&t=${encodeURIComponent(String(Date.now()))}`)
-                            .then(response => response.text())
-                            .then(updateBirdInfo)
-                            .catch(error => console.error('Error refreshing bird info:', error));
-                    })
-                    .catch(error => console.error('Save error:', error));
-            } else {
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    return response.json();
+                })
+                .then(result => {
+                    console.log('Saved bird info (Python):', result);
+                    fetch(`${BASE_URL}/api/file/download?path=birds/${currentFolder}/${currentFolder}.txt&t=${encodeURIComponent(String(Date.now()))}`)
+                        .then(response => response.text())
+                        .then(updateBirdInfo)
+                        .catch(error => console.error('Error refreshing bird info:', error));
+                })
+                .catch(error => console.error('Save error (Python):', error));
+            } else if (serverType === 'simple-http') {
+                // Simple HTTP Server PLUS save
                 const formData = new FormData();
                 formData.append('files[]', new Blob([textContent], { type: 'text/plain' }), `${currentFolder}.txt`);
+
                 fetch(`${BASE_URL}/api/file/upload?path=birds/${currentFolder}`, {
                     method: 'PUT',
                     body: formData,
                     ...fetchOptions
                 })
-                    .then(response => {
-                        if (!response.ok) {
-                            console.error('Save response:', response.status, response.statusText);
-                            throw new Error(`HTTP ${response.status}`);
-                        }
-                        console.log('Saved bird info');
-                        fetch(`${BASE_URL}/api/file/download?path=birds/${currentFolder}/${currentFolder}.txt&t=${encodeURIComponent(String(Date.now()))}`)
-                            .then(response => response.text())
-                            .then(updateBirdInfo)
-                            .catch(error => console.error('Error refreshing bird info:', error));
-                    })
-                    .catch(error => console.error('Save error:', error));
+                .then(response => {
+                    if (response.status !== 204) throw new Error(`HTTP ${response.status}`);
+                    console.log('Saved bird info (Simple HTTP)');
+                    fetch(`${BASE_URL}/api/file/download?path=birds/${currentFolder}/${currentFolder}.txt&t=${encodeURIComponent(String(Date.now()))}`, fetchOptions)
+                        .then(response => response.text())
+                        .then(updateBirdInfo)
+                        .catch(error => console.error('Error refreshing bird info:', error));
+                })
+                .catch(error => console.error('Save error (Simple HTTP):', error));
+            } else {
+                alert('Saving is only supported on Python server and Simple HTTP Server PLUS.');
+                console.warn('Save attempt on unsupported server type:', serverType);
             }
         };
+
         birdInfo.appendChild(saveBtn);
     }
 }
@@ -790,42 +801,38 @@ settingsBtn.addEventListener('click', () => {
 });
 
 
-
-
 function togglePlay(file, button) {
+    const srcPath = new URL(player.src, location.href).pathname;
+    const filePath = new URL(file, location.href).pathname;
+
     if (currentButton && currentButton !== button) {
+        // Stop any other playing audio
         currentButton.classList.remove('playing');
         currentButton.innerHTML = '🔈';
         player.pause();
         player.currentTime = 0;
     }
 
-    if (player.src !== file) {
-        player.src = file;
+    if (srcPath.endsWith(filePath) && !player.paused) {
+        // Stop playback if currently playing
+        player.pause();
+        player.currentTime = 0;
+        button.classList.remove('playing');
+        button.innerHTML = '🔈';
+        currentButton = null;
+    } else {
+        // Start or restart playback
+        if (!srcPath.endsWith(filePath)) {
+            player.src = file;
+        }
+        player.currentTime = 0;
         player.play().then(() => {
             button.classList.add('playing');
             animateSpeaker(button);
             currentButton = button;
         }).catch(error => console.error('Playback error:', error));
-    } else {
-        if (!player.paused) {
-            player.pause();
-            player.currentTime = 0;
-            button.classList.remove('playing');
-            button.innerHTML = '🔈';
-            currentButton = null;
-        } else {
-            // force restart from beginning
-            player.currentTime = 0;
-            player.play().then(() => {
-                button.classList.add('playing');
-                animateSpeaker(button);
-                currentButton = button;
-            }).catch(error => console.error('Playback error:', error));
-        }
     }
 }
-
 
 console.log('Application started: Fetching bird data...');
 fetchBirdData()

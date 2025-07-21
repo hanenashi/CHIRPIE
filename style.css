@@ -182,16 +182,18 @@ header {
 
 .speaker-btn {
     font-size: 24px;
-    background: none;
-    border: none;
+    background: transparent;
+    border: 2px solid transparent; /* ring color added in JS */
+    border-radius: 50%;
     cursor: pointer;
     padding: 5px;
-    color: #e0e0e0;
     outline: none;
+    transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
 .speaker-btn.playing {
     animation: wobble 1s infinite;
+    box-shadow: 0 0 8px currentColor; /* glow matches button color */
 }
 
 .save-bird-btn, .settings-content button {
@@ -276,4 +278,4 @@ header {
         width: 180px;
         font-size: 12px;
     }
-}s
+}
